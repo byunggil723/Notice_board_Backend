@@ -1,8 +1,6 @@
 # Notice Board API (cURL Examples)
 
-## 📌 게시판 (NoticeBoard)
-
-### GET (게시글 조회: 페이지네이션 - 무한 스크롤 방식)
+### 📌 GET (게시글 조회: 페이지네이션 - 무한 스크롤 방식)
 
 ```bash
 curl -sG 'http://localhost:3000/notice-board/get' \
@@ -15,7 +13,7 @@ curl -sG 'http://localhost:3000/notice-board/get' \
   --data-urlencode 'cursor=2025-08-13T22:03:09.043Z' | jq
 ```
 
-### POST (게시글 작성)
+### 📌 POST (게시글 작성)
 
 ```bash
 curl -s -X POST 'http://localhost:3000/notice-board/post' \
@@ -28,7 +26,7 @@ curl -s -X POST 'http://localhost:3000/notice-board/post' \
   }' | jq
 ```
 
-### PATCH (게시글 수정)
+### 📌 PATCH (게시글 수정)
 
 ```bash
 curl -s -X PATCH "http://localhost:3000/notice-board/patch/944a64bd-249b-48df-907e-7029703c7c8a" \
@@ -40,7 +38,7 @@ curl -s -X PATCH "http://localhost:3000/notice-board/patch/944a64bd-249b-48df-90
   }' | jq
 ```
 
-### DELETE (게시글 삭제)
+### 📌 DELETE (게시글 삭제)
 
 ```bash
 curl -s -X DELETE "http://localhost:3000/notice-board/delete/944a64bd-249b-48df-907e-7029703c7c8a" \
@@ -50,7 +48,7 @@ curl -s -X DELETE "http://localhost:3000/notice-board/delete/944a64bd-249b-48df-
   }' | jq
 ```
 
-### POST (댓글 작성)
+### 📌 POST (댓글 작성)
 
 ```bash
 curl -s -X POST "http://localhost:3000/comment/post" \
@@ -72,7 +70,7 @@ curl -s -X POST "http://localhost:3000/comment/post" \
 
 ```
 
-### PATCH (댓글 수정)
+### 📌 PATCH (댓글 수정)
 
 ```bash
 curl -s -X PATCH "http://localhost:3000/comment/patch/0fb72731-9cc3-4bab-802e-a993b1253385" \
@@ -83,7 +81,7 @@ curl -s -X PATCH "http://localhost:3000/comment/patch/0fb72731-9cc3-4bab-802e-a9
   }' | jq
 ```
 
-### DELETE (댓글 삭제)
+### 📌 DELETE (댓글 삭제)
 
 ```bash
 curl -s -X DELETE "http://localhost:3000/comment/delete/0be14cc5-52dc-49e0-8736-ae8252f87af1" \
