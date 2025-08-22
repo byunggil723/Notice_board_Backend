@@ -7,6 +7,7 @@ class AuthorDto {
 
 export class CommentDto {
   id: string;
+  author: AuthorDto;
   content: string;
   parent: string | null;
   children: CommentDto[] | null;
