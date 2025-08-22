@@ -69,6 +69,10 @@ export class CommentService {
 
     return {
       id: result.id,
+      author: {
+        id: result.author.id,
+        nickname: result.author.nickname,
+      },
       content: result.content,
       parent: result.parent?.id ?? null,
       createdAt: result.createdAt,
@@ -87,7 +91,9 @@ export class CommentService {
       relations: {
         author: true,
         parent: true,
-        children: true,
+        children: {
+          author: true,
+        },
       },
     });
 
@@ -107,6 +113,10 @@ export class CommentService {
         : (updatedComment.children?.map((child) => {
             return {
               id: child.id,
+              author: {
+                id: child.author.id,
+                nickname: child.author.nickname,
+              },
               content: child.content,
               parent: updatedComment.id,
               children: null,
@@ -119,6 +129,10 @@ export class CommentService {
         success: true,
         updatedComment: {
           id: updatedComment.id,
+          author: {
+            id: updatedComment.author.id,
+            nickname: updatedComment.author.nickname,
+          },
           content: updatedComment.content,
           parent: updatedComment.parent?.id ?? null,
           children: children,
@@ -133,7 +147,9 @@ export class CommentService {
         },
         relations: {
           parent: true,
-          children: true,
+          children: {
+            author: true,
+          },
         },
       });
 
@@ -144,6 +160,10 @@ export class CommentService {
         ? (latestComment.children?.map((child) => {
             return {
               id: child.id,
+              author: {
+                id: child.author.id,
+                nickname: child.author.nickname,
+              },
               content: child.content,
               parent: latestComment.id,
               children: null,
@@ -157,6 +177,10 @@ export class CommentService {
         success: true,
         latestComment: {
           id: latestComment.id,
+          author: {
+            id: latestComment.author.id,
+            nickname: latestComment.author.nickname,
+          },
           content: latestComment.content,
           parent: latestComment.parent?.id ?? null,
           children: children,
@@ -178,8 +202,6 @@ export class CommentService {
       },
       relations: {
         author: true,
-        parent: true,
-        children: true,
       },
     });
 

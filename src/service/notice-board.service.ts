@@ -37,19 +37,26 @@ export class NoticeBoardService implements OnApplicationBootstrap {
 
   // 기본 데이터 삽입
   async onApplicationBootstrap() {
-    const tempUser = this.userRepo.create({
+    const tempUser1 = this.userRepo.create({
       name: '이병길',
       age: 26,
       nickname: 'byunggil',
     });
-    await this.userRepo.save(tempUser);
+    await this.userRepo.save(tempUser1);
+
+    const tempUser2 = this.userRepo.create({
+      name: '이병문',
+      age: 26,
+      nickname: 'qudrlf72',
+    });
+    await this.userRepo.save(tempUser2);
 
     console.log('🟢 User 기본 데이터 삽입 완료');
 
     for (let i = 0; i < 100; i++) {
       const tempPost = this.postRepo.create({
         classType: ClassType.CLASS_0,
-        author: tempUser,
+        author: tempUser1,
         title: `${i + 1}번 게시글`,
         content: `${i + 1}번 게시글의 내용`,
         createdAt: new Date(Date.now() - i * 60000),
@@ -59,7 +66,7 @@ export class NoticeBoardService implements OnApplicationBootstrap {
       for (let j = 0; j < 3; j++) {
         const tempComment = this.commentRepo.create({
           post: tempPost,
-          author: tempUser,
+          author: tempUser2,
           parent: null,
           content: `${i + 1}번 게시글의 ${j + 1}번 댓글`,
           createdAt: new Date(Date.now() - j * 60000),
@@ -133,14 +140,20 @@ export class NoticeBoardService implements OnApplicationBootstrap {
     const comments = await this.commentRepo
       .createQueryBuilder('comment')
       .leftJoin('comment.post', 'post')
+      .leftJoin('comment.author', 'author')
       .leftJoin('comment.children', 'child')
+      .leftJoin('child.author', 'childAuthor')
       .select([
         'comment.id',
         'comment.content',
         'comment.createdAt',
         'comment.updatedAt',
         'post.id',
+        'author.id',
+        'author.nickname',
         'child.id',
+        'childAuthor.id',
+        'childAuthor.nickname',
         'child.content',
         'child.createdAt',
         'child.updatedAt',
@@ -165,6 +178,10 @@ export class NoticeBoardService implements OnApplicationBootstrap {
         comment.children?.map((child) => {
           return {
             id: child.id,
+            author: {
+              id: child.author.id,
+              nickname: child.author.nickname,
+            },
             content: child.content,
             parent: comment.id,
             children: null,
@@ -175,6 +192,10 @@ export class NoticeBoardService implements OnApplicationBootstrap {
 
       commentsByPostId.get(postId)!.push({
         id: comment.id,
+        author: {
+          id: comment.author.id,
+          nickname: comment.author.nickname,
+        },
         content: comment.content,
         parent: comment.parent?.id ?? null,
         children: children,

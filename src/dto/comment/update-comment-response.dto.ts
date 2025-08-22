@@ -4,6 +4,10 @@ export class UpdateCommentResponseDto {
   success: boolean;
   updatedComment?: {
     id: string;
+    author: {
+      id: string;
+      nickname: string;
+    };
     content: string;
     parent: string | null;
     children: CommentDto[] | null;
@@ -12,6 +16,10 @@ export class UpdateCommentResponseDto {
   };
   latestComment?: {
     id: string;
+    author: {
+      id: string;
+      nickname: string;
+    };
     content: string;
     parent: string | null;
     children: CommentDto[] | null;
