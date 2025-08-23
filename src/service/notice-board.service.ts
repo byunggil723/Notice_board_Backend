@@ -76,6 +76,8 @@ export class NoticeBoardService implements OnApplicationBootstrap {
     }
 
     console.log('🟢 NoticeBoardPost 기본 데이터 삽입 완료');
+
+    console.log('✅ CI/CD 환경 테스트 완료');
   }
 
   // 게시글 생성
