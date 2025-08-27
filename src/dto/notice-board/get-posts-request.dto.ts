@@ -1,17 +1,18 @@
-import { ClassType } from '@/shared/class-type.enum';
 import { Type } from 'class-transformer';
-import {
-  IsDefined,
-  IsEnum,
-  IsInt,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class GetPostsRequestDto {
   @IsDefined()
-  @IsEnum(ClassType)
-  classType: ClassType;
+  @IsString()
+  boardType: string;
+
+  @IsDefined()
+  @IsString()
+  classType: string;
+
+  @IsDefined()
+  @IsString()
+  contentType: string;
 
   @IsDefined()
   @Type(() => Number)
@@ -21,4 +22,8 @@ export class GetPostsRequestDto {
   @IsOptional()
   @IsString()
   cursor?: string;
+
+  @IsOptional()
+  @IsString()
+  targetId?: string;
 }

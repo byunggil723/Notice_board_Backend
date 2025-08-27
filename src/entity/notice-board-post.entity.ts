@@ -11,19 +11,20 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Comment } from './comment.entity';
-import { ClassType } from '@/shared/class-type.enum';
 
 @Entity()
 export class NoticeBoardPost {
   @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string;
 
-  @Column({
-    name: 'class_type',
-    type: 'enum',
-    enum: ClassType,
-  })
-  classType: ClassType;
+  @Column({ name: 'board_type' })
+  boardType: string;
+
+  @Column({ name: 'class_type' })
+  classType: string;
+
+  @Column({ name: 'content_type' })
+  contentType: string;
 
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn({ name: 'author' })

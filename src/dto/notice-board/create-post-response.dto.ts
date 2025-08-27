@@ -1,5 +1,3 @@
-import { ClassType } from '@/shared/class-type.enum';
-
 class AuthorDto {
   id: string;
   nickname: string;
@@ -7,7 +5,9 @@ class AuthorDto {
 
 export class CreatePostsResponseDto {
   id: string;
-  classType: ClassType;
+  boardType: string;
+  classType: string;
+  contentType: string;
   author: AuthorDto;
   title: string;
   content: string;

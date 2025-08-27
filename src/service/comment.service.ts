@@ -43,7 +43,9 @@ export class CommentService {
       throw new NotFoundException('해당 게시글을 찾을 수 없습니다.');
     }
 
-    const author = await this.userRepo.findOneBy({ id: body.authorId });
+    const author = await this.userRepo.findOneBy({
+      nickname: body.authorNickname,
+    });
     if (!author) {
       throw new NotFoundException('해당 유저를 찾을 수 없습니다.');
     }
@@ -100,7 +102,7 @@ export class CommentService {
     if (!prevComment)
       throw new NotFoundException('해당 댓글을 찾을 수 없습니다.');
 
-    if (prevComment.author.id !== body.authorId)
+    if (prevComment.author.nickname !== body.authorNickname)
       throw new ForbiddenException('본인 댓글만 수정할 수 있습니다.');
 
     if (body.content !== undefined) prevComment.content = body.content;
@@ -207,7 +209,7 @@ export class CommentService {
 
     if (!comment) throw new NotFoundException('해당 댓글을 찾을 수 없습니다.');
 
-    if (comment.author.id !== body.authorId)
+    if (comment.author.nickname !== body.authorNickname)
       throw new ForbiddenException('본인 댓글만 삭제할 수 있습니다.');
 
     await this.commentRepo.remove(comment);

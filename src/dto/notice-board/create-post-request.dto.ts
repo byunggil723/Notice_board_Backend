@@ -1,14 +1,21 @@
-import { IsDefined, IsEnum, IsString } from 'class-validator';
-import { ClassType } from '@/shared/class-type.enum';
+import { IsDefined, IsString } from 'class-validator';
 
 export class CreatePostRequestDto {
   @IsDefined()
-  @IsEnum(ClassType)
-  classType: ClassType;
+  @IsString()
+  boardType: string;
 
   @IsDefined()
   @IsString()
-  authorId: string;
+  classType: string;
+
+  @IsDefined()
+  @IsString()
+  contentType: string;
+
+  @IsDefined()
+  @IsString()
+  authorNickname: string;
 
   @IsDefined()
   @IsString()

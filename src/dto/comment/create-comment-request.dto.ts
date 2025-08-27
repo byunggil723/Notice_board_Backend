@@ -3,7 +3,7 @@ import { IsDefined, IsOptional, IsString } from 'class-validator';
 export class CreateCommentRequestDto {
   @IsDefined()
   @IsString()
-  authorId: string;
+  authorNickname: string;
 
   @IsDefined()
   @IsString()
