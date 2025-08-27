@@ -29,7 +29,7 @@ import { CommentModule } from './module/comment.module';
         database: configService.get<string>('DATABASE_NAME'),
         entities: [NoticeBoardPost, Comment, User],
         synchronize: true,
-        dropSchema: true, // 배포 단계에서 반드시 삭제!
+        dropSchema: true, // 배포 단계에서 반드시 삭제
       }),
     }),
     NoticeBoardModule,
