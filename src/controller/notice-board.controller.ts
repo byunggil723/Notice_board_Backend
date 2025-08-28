@@ -31,13 +31,7 @@ export class NoticeBoardController {
 
   @Get('get')
   getPosts(@Query() query: GetPostsRequestDto): Promise<GetPostsResponseDto> {
-    return this.noticeBoardService.getPosts({
-      boardType: query.boardType,
-      classType: query.classType,
-      contentType: query.contentType,
-      limit: query.limit,
-      cursor: query.cursor ? query.cursor : undefined,
-    });
+    return this.noticeBoardService.getPosts(query);
   }
 
   @Patch('patch/:id')

@@ -135,7 +135,11 @@ export class NoticeBoardService implements OnApplicationBootstrap {
       });
     }
 
+    console.log('test');
+    console.log(query.targetId);
+
     if (query.targetId) {
+      console.log(query.targetId);
       queryBuilder.andWhere('post.id = :targetId', {
         targetId: query.targetId,
       });
